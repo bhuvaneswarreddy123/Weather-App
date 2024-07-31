@@ -18,9 +18,6 @@ search.addEventListener('click', () => {
          .then(json => {
             console.log(json)
             if (json.cod === '404') {
-        .then(data => {
-            console.log(data)
-            if (data.cod === '404') {
                 container.style.height = '400px';
                 weatherBox.style.display = 'none';
                 weatherDetails.style.display = 'none';
@@ -38,7 +35,6 @@ search.addEventListener('click', () => {
             const humidity = document.querySelector('.weather-details .humidity span');
             const wind = document.querySelector('.weather-details .wind span');
             switch (json.weather[0].main) {
-            switch (data.weather[0].main) {
                 case 'Clear':
                     image.src = 'images/clear.png';
                     break;
@@ -70,10 +66,6 @@ search.addEventListener('click', () => {
             description.innerHTML = `${json.weather[0].description}`;
             humidity.innerHTML = `${json.main.humidity}%`;
             wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
-            temperature.innerHTML = `${parseInt(data.main.temp)}<span>°C</span>`;
-            description.innerHTML = `${data.weather[0].description}`;
-            humidity.innerHTML = `${data.main.humidity}%`;
-            wind.innerHTML = `${parseInt(data.wind.speed)}Km/h`;
 
             weatherBox.style.display = '';
             weatherDetails.style.display = '';
