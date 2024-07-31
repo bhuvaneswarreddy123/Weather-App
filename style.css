@@ -1,137 +1,197 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap");
-body {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
   margin: 0;
-  color: #34495e;
+  padding: 0;
+  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  height: 100%;
 }
 
-.container,
-.formbox {
+body {
+  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background: greenyellow;
 }
 
 .container {
-  height: 100vh;
-  background: #6fa5f6;
-  flex-direction: column;
-}
-
-.formbox {
-  background: #121726;
-  width: 350px;
-  height: 80px;
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 0.625rem;
-}
-
-.formbox .fa-lock {
-  color: #fff;
-  font-size: 1.375rem;
   position: relative;
-  margin-right: 0.3125rem;
-}
-
-#myPass {
-  position: relative;
-  width: 180px;
-  margin-right: 0.9375rem;
-}
-
-input {
-  border-radius: 0.3125rem;
-  border: none;
-  color: #575dbc;
-  font-size: 1.375rem;
-  outline: none;
-  margin-left: 0.9375rem;
-  display: inline;
-  background: none;
-  transition-delay: 0.2s;
-}
-
-.showPass {
-  position: relative;
-  margin-left: 1.5rem;
-  cursor: pointer;
-}
-
-.inner {
-  background: #ffffff;
-  padding: 40px 50px;
-  border-radius: 5px;
-  width: 250px;
-  clip-path: circle(8% at 87.2% 49.2%);
-  transition: all 0.25s ease-out;
-  position: absolute;
-  overflow: hidden;
-}
-
-.inner-hover {
-  clip-path: circle(75%);
+  width: 400px;
+  height: 105px;
   background: #fff;
-}
-
-.color-change {
-  transition-delay: 0.2s;
-  color: #121726 !important;
-}
-
-.showPass .eye-open {
-  margin-top: -1px !important;
-  width: 26px;
-  height: 25px !important;
-  transition: all 0.2s ease;
-}
-
-.showPass .eye-close {
-  margin-top: 0.625rem;
-  width: 25px;
-  height: 18px;
-}
-
-.validator {
-  margin-top: 20px;
-  width: 310px;
-  position: relative;
-  height: 190px;
+  padding: 28px 32px;
   overflow: hidden;
-  border-radius: 5px;
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
-  padding: 7px 20px 0px;
-  background-color: #121726;
+  border-radius: 18px;
+  font-family: "Roboto", sans-serif;
+  transition: 0.6s ease-out;
 }
 
-.validator p {
-  opacity: 0.6;
-  transition: all 0.3s ease-out;
+.search-box {
+  width: 100%;
+  height: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.validator p span {
-  font-size: 15px;
+.search-box input {
+  color: green;
+  width: 80%;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding-left: 40px;
+  border: 0;
+  outline: none;
+  border-bottom: 2px solid green;
+}
+
+.search-box input::placeholder {
+  font-size: 18px;
+  font-weight: 500;
+  color: green;
+  opacity: 0.5;
+  text-transform: capitalize;
+}
+
+.search-box button {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  color: green;
+  background: #dff6ff;
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  transition: 0.4s ease;
+}
+
+.search-box button:hover {
   color: #fff;
-  margin-left: 35px;
+  background: green;
+}
+
+.search-box i {
+  position: absolute;
+  color: green;
+  font-size: 24px;
+  padding-bottom: 5px;
+}
+
+.weather-box {
+  text-align: center;
+}
+
+.weather-box img {
+  width: 60%;
+  margin-top: 30px;
+}
+
+.weather-box .temperature {
+  position: relative;
+  color: green;
+  font-size: 4rem;
+  font-weight: 800;
+  margin-top: 30px;
+  margin-left: -16px;
+}
+
+.weather-box .temperature span {
+  position: absolute;
+  margin-left: 4px;
+  font-size: 1.5rem;
+}
+
+.weather-box .description {
+  color: green;
+  font-size: 22px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.weather-details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.weather-details .humidity,
+.weather-details .wind {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  height: 100px;
+}
+
+.weather-details .humidity {
+  padding-left: 20px;
+  justify-content: flex-start;
+}
+
+.weather-details .wind {
+  padding-right: 20px;
+  justify-content: flex-end;
+}
+
+.weather-details i {
+  color: green;
+  font-size: 26px;
+  margin-right: 10px;
+  margin-top: 6px;
+}
+
+.weather-details .text {
+  padding-left: 10px;
+}
+
+.weather-details span {
+  color: green;
+  font-size: 22px;
   font-weight: 500;
 }
 
-.validator p i {
-  position: absolute;
-  text-align: center;
-  width: 20px;
-  height: 20px;
-  line-height: 26px;
-  font-size: 15px;
-  border-radius: 50%;
-  color: #ffffff;
+.weather-details p {
+  color: green;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.fa-check {
+.not-found {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  scale: 0;
+  opacity: 0;
+  display: none;
+}
+
+.not-found img {
+  width: 60%;
+}
+
+.not-found p {
+  color: green;
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+.weather-box,
+.weather-details {
+  scale: 0;
   opacity: 0;
 }
 
-.fa-times {
-  opacity: 1;
+.fadeIn {
+  animation: 0.5s fadeIn forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes fadeIn {
+  to {
+    scale: 1;
+    opacity: 1;
+  }
 }
