@@ -1,55 +1,55 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>CodePen - Absolute Password Validator</title>
-  <link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
-<body>
-<!-- partial:index.partial.html -->
-<div class="container">
-        <div class="formbox">
-            <div class="inner"></div>
-            <div><i class="fas fa-lock"></i></div>
-            <div><input type="password" 
-                    placeholder="Password" 
-                    id="myPass" required 
-                    oninput="textChange()">
-            </div>
-            <div>
-                <span class="showPass" >
-                    <img  class="eye-close" id="img1" src="https://i.postimg.cc/HWMtCN1m/eye-close.png" alt="eye" 
-                        onclick="toggle()"
-                        >
-                </span>
-            </div>    
-        </div>
-        <div class="validator">
-            <p id="capital">
-                <i class="fas fa-times"></i>
-                <i class="fas fa-check"></i>
-                <span>Upper Case</span>
-            </p>
-            <p id="special-char">
-                <i class="fas fa-times"></i>
-                <i class="fas fa-check"></i>
-                <span>Special Character</span>
-            </p>
-            <p id="number">
-                <i class="fas fa-times"></i>
-                <i class="fas fa-check"></i>
-                <span>Number</span>
-            </p>
-            <p id="more-than-8">
-                <i class="fas fa-times"></i>
-                <i class="fas fa-check"></i>
-                <span>More than 8 characters</span>
-            </p>
-        </div>
-    </div>
-<!-- partial -->
-  <script src='https://kit.fontawesome.com/1c2c2462bf.js'></script><script  src="script.js"></script>
 
+<body>
+
+    <div class="container">
+        <div class="search-box">
+            <i class="fa-solid fa-location-dot"></i>
+            <input type="text" placeholder="Enter your location">
+            <button class="fa-solid fa-magnifying-glass"></button>
+        </div>
+
+        <div class="not-found">
+            <img src="images/location_not_found.png">
+            <p>Oops..! Location not found😐</p>
+        </div>
+
+        <div class="weather-box">
+            <img src="">
+            <p class="temperature"></p>
+            <p class="description"></p>
+        </div>
+
+        <div class="weather-details">
+            <div class="humidity">
+                <i class="fa-solid fa-water"></i>
+                <div class="text">
+                    <span></span>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="wind">
+                <i class="fa-solid fa-wind"></i>
+                <div class="text">
+                    <span></span>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="index.js"></script>
 </body>
+
 </html>
