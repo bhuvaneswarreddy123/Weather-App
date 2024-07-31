@@ -7,7 +7,7 @@ const error404 = document.querySelector('.not-found');
 search.addEventListener('click', () => {
 
     // use your api key from open weather api
-    const APIKey = 'USE_YOUR_API_KEY';
+    const APIKey = 'a59dc94bb571f955f4fd66f43850e647';
     const city = document.querySelector('.search-box input').value;
 
     if (city === '')
@@ -15,6 +15,9 @@ search.addEventListener('click', () => {
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
         .then(response => response.json())
+         .then(json => {
+            console.log(json)
+            if (json.cod === '404') {
         .then(data => {
             console.log(data)
             if (data.cod === '404') {
@@ -34,7 +37,7 @@ search.addEventListener('click', () => {
             const description = document.querySelector('.weather-box .description');
             const humidity = document.querySelector('.weather-details .humidity span');
             const wind = document.querySelector('.weather-details .wind span');
-
+            switch (json.weather[0].main) {
             switch (data.weather[0].main) {
                 case 'Clear':
                     image.src = 'images/clear.png';
@@ -63,7 +66,10 @@ search.addEventListener('click', () => {
                 default:
                     image.src = '';
             }
-
+            temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
+            description.innerHTML = `${json.weather[0].description}`;
+            humidity.innerHTML = `${json.main.humidity}%`;
+            wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
             temperature.innerHTML = `${parseInt(data.main.temp)}<span>°C</span>`;
             description.innerHTML = `${data.weather[0].description}`;
             humidity.innerHTML = `${data.main.humidity}%`;
