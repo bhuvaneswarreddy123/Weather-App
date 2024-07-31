@@ -1,83 +1,82 @@
-var lockIcon = document.querySelector(".fa-lock");
-        var inner = document.querySelector(".inner");
-        var password = document.querySelector("#myPass");
-        var state = false;
-        let text,validIcons,invalidIcons;
+const container = document.querySelector('.container');
+const search = document.querySelector('.search-box button');
+const weatherBox = document.querySelector('.weather-box');
+const weatherDetails = document.querySelector('.weather-details');
+const error404 = document.querySelector('.not-found');
 
-        function toggle(){
-            myFunction();
-            if(state){
-                function displayPass(){
-                    document.getElementById("myPass").
-                    setAttribute("type","password");
-                }
-                setTimeout(displayPass,80);
-               
-                lockIcon.classList.remove("color-change");
-                inner.classList.remove("inner-hover");
-                state = false;
+search.addEventListener('click', () => {
+
+    // use your api key from open weather api
+    const APIKey = 'USE_YOUR_API_KEY';
+    const city = document.querySelector('.search-box input').value;
+
+    if (city === '')
+        return;
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            if (data.cod === '404') {
+                container.style.height = '400px';
+                weatherBox.style.display = 'none';
+                weatherDetails.style.display = 'none';
+                error404.style.display = 'block';
+                error404.classList.add('fadeIn');
+                return;
             }
-            else{
-                function displayText(){
-                    document.getElementById("myPass").
-                    setAttribute("type","text");
-                }
-                setTimeout(displayText,80);
 
-                lockIcon.classList.add("color-change");
-                inner.classList.add("inner-hover");
-                state = true;
+            error404.style.display = 'none';
+            error404.classList.remove('fadeIn');
+
+            const image = document.querySelector('.weather-box img');
+            const temperature = document.querySelector('.weather-box .temperature');
+            const description = document.querySelector('.weather-box .description');
+            const humidity = document.querySelector('.weather-details .humidity span');
+            const wind = document.querySelector('.weather-details .wind span');
+
+            switch (data.weather[0].main) {
+                case 'Clear':
+                    image.src = 'images/clear.png';
+                    break;
+
+                case 'Rain':
+                    image.src = 'images/rain.png';
+                    break;
+
+                case 'Snow':
+                    image.src = 'images/snow.png';
+                    break;
+
+                case 'Clouds':
+                    image.src = 'images/cloud.png';
+                    break;
+
+                case 'Haze':
+                    image.src = 'images/mist.png';
+                    break;
+
+                case 'Mist':
+                    image.src = 'images/mist.png';
+                    break;    
+
+                default:
+                    image.src = '';
             }
-        }
 
-function myFunction(){
-  var eye = document.querySelector(".eye-close");
-  imgsrc = document.getElementById("img1").src;
-  if(imgsrc.indexOf("eye-close")!= -1){
-    eye.classList.add('eye-open');
-    document.getElementById("img1").src="https://i.postimg.cc/3JHFrZ3v/eye-open.png";
-  }else{
-    eye.classList.remove('eye-open');
-    document.getElementById("img1").src = "https://i.postimg.cc/HWMtCN1m/eye-close.png";
-  }
-}
+            temperature.innerHTML = `${parseInt(data.main.temp)}<span>°C</span>`;
+            description.innerHTML = `${data.weather[0].description}`;
+            humidity.innerHTML = `${data.main.humidity}%`;
+            wind.innerHTML = `${parseInt(data.wind.speed)}Km/h`;
 
-        function valid(item , validIcon , invalidIcon){
-            text = document.querySelector(`#${item}`);
-            text.style.opacity = "1";
-            validIcons = document.querySelector(`#${item} .${validIcon}`);
-            validIcons.style.opacity='1';
-            invalidIcons = document.querySelector(`#${item} .${invalidIcon}`);
-            invalidIcons.style.opacity="0";
-        }
+            weatherBox.style.display = '';
+            weatherDetails.style.display = '';
+            weatherBox.classList.add('fadeIn');
+            weatherDetails.classList.add('fadeIn');
+            container.style.height = '590px';
 
-        function invalid(item , validIcon , invalidIcon){
-            text = document.querySelector(`#${item}`);
-            text.style.opacity = "0.5";
-            validIcons = document.querySelector(`#${item} .${validIcon}`);
-            validIcons.style.opacity='0';
-            invalidIcons = document.querySelector(`#${item} .${invalidIcon}`);
-            invalidIcons.style.opacity="1";
-        }
 
-        function textChange(){
-            if(password.value.match(/[A-Z]/) != null)
-                valid('capital' , 'fa-check' , 'fa-times');
-            else
-                invalid('capital' , 'fa-check' , 'fa-times');
+        });
 
-            if(password.value.match(/[0-9]/) != null)
-                valid('number' , 'fa-check' , 'fa-times');
-            else
-                invalid('number' , 'fa-check' , 'fa-times');
-            
-            if(password.value.match(/[!@#$%^&*]/) != null)
-                valid('special-char' , 'fa-check' , 'fa-times');
-            else
-                invalid('special-char' , 'fa-check' , 'fa-times');
 
-            if(password.value.length >= 8)
-                valid('more-than-8' , 'fa-check' , 'fa-times');
-            else
-                invalid('more-than-8' , 'fa-check' , 'fa-times');
-        }
+});
